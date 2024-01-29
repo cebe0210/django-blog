@@ -3,16 +3,13 @@
 {% block content %}
     <div class="card mb-4">
         <div class="card-body">
-            <h2 class="card-title">{{ itineraire.title }}</h2>
-            <p class="card-text">{{ itineraire.content|markdown|safe }}</p>
-            <div class="itineraire-mymaps">
-                <!-- Espace pour afficher l'itinéraire depuis MyMaps -->
-                <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="{{ itineraire.map_link }}"></iframe>
-            </div>
-            <button class="btn btn-primary" id="like-btn" data-article-id="{{ itineraire.id }}">
+            <h2 class="card-title">{{ histoire.title }}</h2>
+            <p class="card-text">{{ histoire.content|markdown|safe }}</p>
+            <!-- Vous pouvez ajouter d'autres champs spécifiques à l'histoire ici -->
+            <button class="btn btn-primary" id="like-btn" data-article-id="{{ histoire.id }}">
                 <i class="bi bi-hand-thumbs-up"></i> Like
             </button>
-            <span id="likes-count" class="ms-2">{{ itineraire.likes }}</span> Likes
+            <span id="likes-count" class="ms-2">{{ histoire.likes }}</span> Likes
         </div>
     </div>
     {% include 'rome/comment.html' %}

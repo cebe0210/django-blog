@@ -1,0 +1,43 @@
+{% load markdown_filters %}
+<div class="card mb-4">
+    <div class="card-body">
+        <h3>Commentaires</h3>
+
+        {% if article.category == 'Itineraire' %}
+            <form method="post" action="{% url 'itineraire_detail' pk=article.id %}">
+        {% elif article.category == 'Histoire' %}
+            <form method="post" action="{% url 'histoire_detail' pk=article.id %}">
+        {% elif article.category == 'Article' %}
+            <form method="post" action="{% url 'article_detail' pk=article.id %}">
+        {% endif %}
+        
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit" class="btn btn-primary">Ajouter un commentaire</button>
+        </form>
+        
+
+        <!-- Liste des commentaires -->
+        <ul class="list-unstyled">
+            {% for comment in comments %}
+                <li>
+                    <strong>{{ comment.author }} - {{ comment.title }}</strong>
+                    <p>{{ comment.content|markdown|safe }}</p>
+                    <!-- Ajoutez ici un bouton "Répondre" si vous souhaitez permettre les réponses -->
+                        {% comment %} <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#replyForm{{ comment.id }}" aria-expanded="false" aria-controls="replyForm{{ comment.id }}">
+                            Répondre
+                        </button>
+                        <!-- Formulaire de réponse (initialement caché) -->
+                        <div class="collapse" id="replyForm{{ comment.id }}">
+                            <form method="post" action="{% url 'reply_comment' pk=comment.id %}">
+                                {% csrf_token %}
+                                {{ reply_comment_form.as_p }}
+                                <button type="submit" class="btn btn-primary">Répondre</button>
+                            </form>
+                        </div> {% endcomment %}
+                </li>
+            {% endfor %}
+            
+        </ul>
+    </div>
+</div>

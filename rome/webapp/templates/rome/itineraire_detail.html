@@ -1,16 +1,20 @@
+{% comment %} {% load markdown_filters %}
+
 <div class="card mb-4">
     <figure>
-        <img src="{{ itineraire.image.url }}" class="card-img-top float-{{ itineraire.image_position }}" alt="{{ itineraire.title }}">
+        <img src="{{ article.image.url }}" class="card-img-top float-{{ article.image_position }}" alt="{{ article.title }}">
         <figcaption class="card-img-caption">
             <!-- Ajoutez votre description d'image ici -->
-            {{ itineraire.image_description }}
+            {{ article.image_description }}
         </figcaption>
     </figure>
     <div class="card-body">
-        <span class="badge badge-info badge-custom">Itinéraire</span>
-        <h2 class="card-title">{{ itineraire.title }}</h2>
-        <p class="card-text meta">Publié le {{ itineraire.date|date:"j F Y" }}par <a class="custom-author" href="{% url 'author_detail' pk=itineraire.author.id %}">{{ itineraire.author.name }}</a></p>
-        <p class="card-text">{{ itineraire.content|truncatewords:30 }}</p>
-        <a href="{% url 'itineraire_detail' pk=itineraire.id %}" class="btn btn-primary custom-btn">Lire la suite</a>
+        {% if article.article_type == 'Itineraire' %}
+            <span class="badge badge-info badge-custom">Itinéraire</span>
+        {% endif %}
+        <h2 class="card-title">{{ article.title }}</h2>
+        {% comment %} <p class="card-text meta">Publié le {{ article.date|date:"j F Y" }} par <a class="custom-author" href="{% url 'author_detail' pk=article.author.id %}">{{ article.author.name }}</a></p> {% endcomment %}
+        {% comment %} <p class="card-text">{{ article.content|markdown|safe|truncatewords:30 }}</p>
+        <a href="{% url 'article_detail' pk=article.id %}" class="btn btn-primary custom-btn">Lire la suite</a>
     </div>
-</div>
+</div> {% endcomment %} 

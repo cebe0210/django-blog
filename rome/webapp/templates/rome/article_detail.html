@@ -1,3 +1,5 @@
+{% load markdown_filters %}
+
 <div class="card mb-4">
     <figure>
         <img src="{{ article.image.url }}" class="card-img-top float-{{ article.image_position }}" alt="{{ article.title }}">
@@ -9,7 +11,28 @@
     <div class="card-body">
         <h2 class="card-title">{{ article.title }}</h2>
         <p class="card-text meta">Publié le {{ article.date|date:"j F Y" }} par <a class="custom-author" href="{% url 'author_detail' pk=article.author.id %}">{{ article.author.name }}</a></p>
-        <p class="card-text">{{ article.content|truncatewords:30 }}</p>
-        <a href="{% url 'article_detail' pk=article.id %}" class="btn btn-primary custom-btn">Lire la suite</a>
-    </div>
+        <p class="card-text">{{ article.content|markdown|safe|truncatewords:30 }}</p>
+        <p class="card-text">{{ article.category }}</p>
+        {% if article.category == 'Itineraire' %}
+            <p>Catégorie de l'article : Itineraire</p>
+            <a href="{% url 'itineraire_detail' pk=article.pk %}" class="btn btn-primary custom-btn">Lire la suite</a>
+        {% elif article.category == 'Article' %}
+            <p>Catégorie de l'article : {{ article.category }}</p>
+            <a href="{% url 'article_detail' pk=article.pk %}" class="btn btn-primary custom-btn">Lire la suite</a>
+        {% elif article.category == 'Histoire' %}
+            <p>Catégorie de l'article : {{ article.category }}</p>
+            <a href="{% url 'histoire_detail' pk=article.pk %}" class="btn btn-primary custom-btn">Lire la suite</a>
+        {% else %}
+
+        {% endif %}
+
+
 </div>
+{# Ajouter ceci pour le débogage #}
+{% if article.category == 'Itineraire' %}
+    <p>Catégorie de l'article : Itineraire</p>
+    <a href="{% url 'itineraire_detail' pk=article.pk %}" class="btn btn-primary custom-btn">Lire la suite</a>
+{% else %}
+    <p>Catégorie de l'article : {{ article.category }}</p>
+    <a href="{% url 'article_detail' pk=article.pk %}" class="btn btn-primary custom-btn">Lire la suite</a>
+{% endif %}

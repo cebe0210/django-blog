@@ -22,12 +22,12 @@ class Article(models.Model):
     title = models.CharField(max_length=128)
     content = models.TextField()
     class Category(models.TextChoices):
-        Architecture = 'ARC', 'Architecture'
-        Histoire = 'HIST', 'Histoire'
-        Art = 'ART', 'Art'
-        Cuisine = 'CUIS', 'Cuisine'
-        Itineraire = 'ITIN', 'Itineraire'
-    category = models.CharField(choices=Category.choices, max_length=5, default='HIST')
+        Article = 'Article', 'Article'
+        Histoire = 'Histoire', 'Histoire'
+        Art = 'Art', 'Art'
+        Cuisine = 'Cuisine', 'Cuisine'
+        Itineraire = 'Itineraire', 'Itineraire'
+    category = models.CharField(choices=Category.choices, max_length=16, default='ARTI')
     date = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     use_external_image = models.BooleanField(default=False)
@@ -41,20 +41,40 @@ class Article(models.Model):
         (False, 'Inactif'),
     ]
     active = models.BooleanField(choices=STATUS_CHOICES, default=True)
-    itineraire = models.BooleanField(choices=STATUS_CHOICES, default=False)
+    likes = models.PositiveIntegerField(default=0)
     
     def get_absolute_url(self):
-        if self.is_itineraire():
-            return reverse('itineraire_detail', args=[str(self.id)])
-        else:
-            return reverse('article_detail', args=[str(self.id)])
+        category_views = {
+            self.Category.Itineraire: 'itineraire_detail',
+            self.Category.Histoire: 'histoire_detail',
+            self.Category.Art: 'art_detail',
+            self.Category.Cuisine: 'cuisine_detail',
+            self.Category.Article: 'article_detail',
+        }
+        view_name = category_views.get(self.category, 'article_detail')
+        return reverse(view_name, kwargs={'pk': self.pk})
     
     def __str__(self):
         return self.title
     
-    def is_itineraire(self):
-        return self.itineraire
+    # def is_itineraire(self):
+    #     return self.itineraire
 
+class Comment(models.Model):
+    author = models.CharField(max_length=128)
+    title = models.CharField(max_length=128)
+    content = models.TextField(max_length=1024)
+    parent_comment = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    STATUS_CHOICES = [
+        (True, 'Actif'),
+        (False, 'Inactif'),
+    ]
+    active = models.BooleanField(choices=STATUS_CHOICES, default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.author} - {self.title}"
     
 class Sponsor(models.Model):
     name = models.CharField(max_length=100)

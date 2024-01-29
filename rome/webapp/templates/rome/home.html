@@ -1,5 +1,6 @@
-{% extends 'rome/base.html' %}
 
+{% extends 'rome/base.html' %}
+{% load markdown_filters %}
 {% block content %}
     <!-- Section principale -->
     <div class="row">
@@ -12,13 +13,7 @@
 
         <div class="col-lg-8">
             {% for content in articles %}
-                {% if content.is_itineraire %}
-                    <!-- Affichage d'un itinéraire -->
-                    {% include 'rome/itineraire_detail.html' with itineraire=content %}
-                {% else %}
-                    <!-- Affichage d'un article normal -->
-                    {% include 'rome/article_detail.html' with article=content %}
-                {% endif %}
+                {% include 'rome/article_detail.html' with article=content %}
             {% endfor %}
         </div>
         <!-- Colonne latérale pour les sponsors -->

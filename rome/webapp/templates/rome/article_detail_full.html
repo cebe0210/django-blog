@@ -1,5 +1,5 @@
 {% extends 'rome/base.html' %}
-
+{% load markdown_filters %}
 {% block content %}
     <div class="card mb-4">
         <figure>
@@ -12,8 +12,11 @@
         <div class="card-body">
             <h2 class="card-title">{{ article.title }}</h2>
             <p class="card-text meta">Publié le {{ article.date|date:"j F Y" }} par <a href="{% url 'author_detail' pk=article.author.id %}">{{ article.author.name }}</a></p>
-            <p class="card-text">{{ article.content }}</p>
+            <p class="card-text">{{ article.content|markdown|safe }}</p>
         </div>
     </div>
+
+    {% include 'rome/comment.html' %}
+    
 {% endblock %}
 
