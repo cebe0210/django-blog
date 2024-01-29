@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <link rel="icon" type="image/png" href="{% get_media_prefix %}img/design/logo-test.png">
+    <title>{% block title %}Blog sur Rome{% endblock %}</title>
+</head>
+<body>
+
+<!-- Bannière supérieure -->
+<div class="jumbotron text-center custom-jumbotron">
+    <h1 class="display-4">Blog sur Rome</h1>
+    <p class="lead">Découvrez l'histoire, l'art, la cuisine et bien plus encore.</p>
+</div>
+
+<!-- Navbar horizontale -->
+{% include 'rome/navbar.html' %}
+
+<!-- Conteneur principal -->
+<div class="container mt-4">
+    {% block content %}{% endblock %}
+</div>
+
+<footer class="footer mt-5">
+{% include 'rome/footer.html' %}
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

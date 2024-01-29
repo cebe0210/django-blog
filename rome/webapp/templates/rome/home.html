@@ -1,0 +1,41 @@
+{% extends 'rome/base.html' %}
+
+{% block content %}
+    <!-- Section principale -->
+    <div class="row">
+         <!-- Colonne principale -->
+         {% comment %} <div class="col-lg-8">
+            {% for article in articles %}
+                {% include 'rome/article_detail.html' with article=article %}
+            {% endfor %}
+        </div> {% endcomment %}
+
+        <div class="col-lg-8">
+            {% for content in articles %}
+                {% if content.is_itineraire %}
+                    <!-- Affichage d'un itinéraire -->
+                    {% include 'rome/itineraire_detail.html' with itineraire=content %}
+                {% else %}
+                    <!-- Affichage d'un article normal -->
+                    {% include 'rome/article_detail.html' with article=content %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <!-- Colonne latérale pour les sponsors -->
+        <div class="col-lg-4">
+            {% for sponsor in sponsors %}
+                {% include 'rome/sponsor_card.html' with sponsor=sponsor %}
+            {% endfor %}
+        </div>   
+
+    </div>
+    {% comment %} <div>
+        <h3>Debug: Contexte</h3>
+        <pre>{{ articles|pprint }}</pre>
+        <pre>{{ sponsors|pprint }}</pre>
+        <pre>{{ autors|pprint }}</pre>
+    </div> {% endcomment %}
+
+    
+
+{% endblock %}

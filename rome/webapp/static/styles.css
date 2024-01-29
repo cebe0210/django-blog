@@ -1,0 +1,49 @@
+/* charte couleurs :
+    Blanc (#FFFFFF)
+    Vert du drapeau italien (#009246)
+    Gris foncé (#333333)
+    Gris clair (#CCCCCC)
+    Rouge du drapeau italien (#CE2B37) */
+
+
+
+.card-img-caption {
+    background: rgba(0, 0, 0, 0.7); /* Arrière-plan avec transparence */
+    color: white; /* Couleur du texte */
+    width: 100%; /* Prend toute la largeur de l'image */
+    padding: 10px; /* Espacement interne */
+    box-sizing: border-box; /* Inclure le padding dans la largeur totale */
+}
+
+.custom-jumbotron {
+    background-image: url('../../media/img/design/saintAnge.png');
+    background-size: cover;
+    background-position: center;
+    color: rgb(255, 255, 255); /* Couleur du texte */
+    padding: 100px 0; /* Ajustez la marge intérieure en fonction de vos besoins */
+}
+.badge-custom {
+    background-color: #CE2B37 !important;
+}
+.custom-jumbotron::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5); /* Opacité réglée ici */
+}
+
+.custom-btn {
+    background-color: #009246;
+    border-color: #009246;
+}
+.custom-btn:hover {
+    background-color: #CE2B37 !important;
+    border-color: #CE2B37 !important;
+}
+
+.custom-author {
+    color: #CE2B37;
+}

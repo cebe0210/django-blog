@@ -1,0 +1,13 @@
+index.html
+
+venv/
+
+rome/media/img
+
+rome/__pycache__
+
+webapp/__pycache__
+
+migrations/__pycache__
+
+rome/db.sqlite3
