@@ -5,6 +5,9 @@ from .models import Article, Author, Sponsor, Comment, Product
 from .forms import CommentForm, CustomLoginForm
 from django.http import JsonResponse
 from django.contrib.auth import login
+from django.db.models import Q
+from functools import reduce  # Importez reduce
+from operator import or_
 
 class HomeView(ListView):
     model = Article
@@ -115,3 +118,25 @@ def login_View(request):
     
     return render(request, 'rome/login.html', context)
 
+def search_view(request):
+    query = request.GET.get('q')
+    if query:
+        # Splittez les mots-clés
+        keywords = query.split()
+
+        # Recherchez d'abord les articles contenant tous les mots-clés
+        results = Article.objects.filter(
+            reduce(or_, [Q(title__icontains=keyword) | Q(content__icontains=keyword) for keyword in keywords])
+        )
+
+        # Si aucun résultat n'est trouvé, recherchez les articles contenant au moins un mot-clé
+        if not results:
+            results = Article.objects.filter(
+                reduce(or_, [Q(title__icontains=keyword) | Q(content__icontains=keyword) for keyword in keywords])
+            )
+
+    else:
+        results = Article.objects.all()
+
+    context = {'results': results, 'query': query}
+    return render(request, 'rome/search_results.html', context)
