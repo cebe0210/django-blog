@@ -3,7 +3,15 @@
 {% block content %}
     <div class="card mb-4">
         <div class="card-body">
+            <figure>
+                <img src="{{ itineraire.image.url }}" class="card-img-top float-{{ itineraire.image_position }}" alt="{{ itineraire.title }}">
+                <figcaption class="card-img-caption">
+                    <!-- Ajoutez votre description d'image ici -->
+                    {{ itineraire.image_description }}
+                </figcaption>
+            </figure>
             <h2 class="card-title">{{ itineraire.title }}</h2>
+            <p class="card-text meta">Publié le {{ itineraire.date|date:"j F Y" }} par <a href="{% url 'author_detail' pk=itineraire.author.id %}">{{ itineraire.author.name }}</a></p>
             <p class="card-text">{{ itineraire.content|markdown|safe }}</p>
             <div class="itineraire-mymaps">
                 <!-- Espace pour afficher l'itinéraire depuis MyMaps -->

@@ -1,0 +1,20 @@
+{% extends 'rome/base.html' %}
+
+{% block content %}
+    <div class="card mb-4">
+        <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="{{ product.title }}">
+        <div class="card-body">
+            <h2>{{ product.title }}</h2>
+            <p>{{ product.description|safe }}</p>
+            
+            {% comment %} <div class="form-group">
+                <label for="quantity">Quantité:</label>
+                <input type="number" name="quantity" id="quantity" value="1" min="1" max="{{ product.stock }}" class="form-control">
+            </div> {% endcomment %}
+            {% comment %} <form method="post" action="{% url 'add_to_cart' product.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Ajouter au panier</button>
+            </form> {% endcomment %}
+        </div>
+    </div>
+{% endblock %}

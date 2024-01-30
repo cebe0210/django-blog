@@ -6,17 +6,33 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#" style="color: #009246;">Architecture</a>
+                <a class="nav-link" href="#">Architecture</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" style="color: #009246;">Histoire</a>
+                <a class="nav-link" href="#">Histoire</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" style="color: #009246;">Art</a>
+                <a class="nav-link" href="#">Art</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" style="color: #009246;">Culinaire</a>
+                <a class="nav-link" href="#">Culinaire</a>
+            </li>
+            <!-- Ajoutez la section Eshop -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'product_list' %}">Eshop</a>
             </li>
         </ul>
+
+        <!-- Barre de recherche -->
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Recherche" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+        </form>
+        
+        <!--Bouton login-->
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Connexion</a>
+        </li>
+        
     </div>
 </nav>

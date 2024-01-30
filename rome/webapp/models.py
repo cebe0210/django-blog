@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from django.contrib.auth.models import User
+
 
 class CarouselImage(models.Model):
     image = models.ImageField(upload_to='carousel_images/')
@@ -89,6 +91,39 @@ class Sponsor(models.Model):
 
     def __str__(self):
         return self.name
+    
+    
+class Product(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    image = models.ImageField(upload_to='img/eshop/')
+    stock = models.IntegerField( )
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+    STATUS_CHOICES = [
+        (True, 'Actif'),
+        (False, 'Inactif'),
+    ]
+    active = models.BooleanField(choices=STATUS_CHOICES, default=True)
+    
+    def get_absolute_url(self):
+        return reverse("product_list", kwargs={"pk": self.pk})
+    
+    def __str__(self):
+        return self.title    
+    
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=30, blank=True)
+    last_name = models.CharField(max_length=30, blank=True)
+    address = models.TextField(blank=True)
+    phone_number = models.CharField(max_length=15, blank=True)
+    email = models.EmailField(blank=True)
+    # Ajoutez d'autres champs selon vos besoins
+    eshop_points = models.IntegerField(default=0)
+    blog_comments_count = models.IntegerField(default=0)
+    active = models.BooleanField(default=True)
 
+    def __str__(self):
+        return self.user.username
     

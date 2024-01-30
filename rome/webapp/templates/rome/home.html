@@ -5,12 +5,6 @@
     <!-- Section principale -->
     <div class="row">
          <!-- Colonne principale -->
-         {% comment %} <div class="col-lg-8">
-            {% for article in articles %}
-                {% include 'rome/article_detail.html' with article=article %}
-            {% endfor %}
-        </div> {% endcomment %}
-
         <div class="col-lg-8">
             {% for content in articles %}
                 {% include 'rome/article_detail.html' with article=content %}

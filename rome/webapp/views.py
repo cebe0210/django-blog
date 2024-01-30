@@ -1,8 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from typing import Any
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
-from .models import Article, Author, Sponsor, Comment
-from .forms import CommentForm
+from .models import Article, Author, Sponsor, Comment, Product
+from .forms import CommentForm, CustomLoginForm
 from django.http import JsonResponse
+from django.contrib.auth import login
 
 class HomeView(ListView):
     model = Article
@@ -42,6 +44,9 @@ class ArticleDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Ajoutez ici d'autres données spécifiques à chaque catégorie si nécessaire
+        article = context['article']
+        context['comments'] = Comment.objects.filter(article=article)
+        context['comment_form'] = CommentForm()
         return context
 
 
@@ -78,3 +83,35 @@ class CommentView(DetailView):
     model = Comment
     template_name = 'rome/comment.html'
     context_object_name = 'comment'
+    
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'rome/product_detail.html'
+    context_object_name = 'product'
+
+class ProductListView(ListView):
+    model = Product
+    template_name = 'rome/product_list.html'
+    context_object_name = 'products'
+    queryset = Product.objects.filter(active=True)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Ajouter d'autres contexte si nécessaire
+        return context
+    
+def login_View(request):
+    if request.method == 'POST':
+        form = CustomLoginForm(request.POST)
+        if form.is_valid():
+            login(request, form.get_user())
+            return redirect('home')
+    else:
+        form = CustomLoginForm()
+
+    context = {
+        'form': form,
+    }
+    
+    return render(request, 'rome/login.html', context)
+
