@@ -1,12 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="{% url 'home' %}">
-        {% comment %} <img src="{% static 'path/to/your/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="Logo"> {% endcomment %}
         Accueil
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse ml-auto" id="navbarNav">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link" href="#">Architecture</a>
@@ -25,39 +24,38 @@
                 <a class="nav-link" href="{% url 'product_list' %}">Eshop</a>
             </li>
         </ul>
-
-        <!-- Barre de recherche -->
-        <form class="form-inline my-2 my-lg-0" action="{% url 'search_results' %}" method="get">
-            <input class="form-control mr-sm-2" type="search" placeholder="Recherche" aria-label="Search" name="q" value="{{ request.GET.q }}">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
-        </form>
-
-        <!-- Bouton login -->
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-                {% if user.is_authenticated %}
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {% comment %} <img src="{% static 'path/to/your/user-icon.png' %}" width="20" height="20" class="d-inline-block align-top" alt="User Icon"> {% endcomment %}
-                        {{ user.username }}
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'home' %}">Profil</a>
-                        <a class="dropdown-item" href="{% url 'home' %}">Panier</a>
-                        <div class="dropdown-divider"></div>
-                        <form method="post" action="{% url 'logout' %}">
-                            {% csrf_token %}
-                            <button type="submit" class="dropdown-item">Déconnexion</button>
-                        </form>
-                        
-                    </div>
-                {% else %}
-                    <a class="nav-link" href="{% url 'login' %}">
-                        {% comment %} <img src="{% static 'path/to/your/login-icon.png' %}" width="20" height="20" class="d-inline-block align-top" alt="Login Icon"> {% endcomment %}
-                        Connexion
-                    </a>
-                {% endif %}
-            </li>
-        </ul>
         
-    </div>
-</nav>
+            <!-- Barre de recherche -->
+            <form class="form-inline my-2 my-lg-0 ml-auto" action="{% url 'search_results' %}" method="get">
+                <div class="input-group">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Recherche" aria-label="Search" name="q" value="{{ request.GET.q }}">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+                    </div>
+                </div>
+            </form>
+        
+            <!-- Bouton login -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    {% if user.is_authenticated %}
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ user.username }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'home' %}">Profil</a>
+                            <a class="dropdown-item" href="{% url 'home' %}">Panier</a>
+                            <div class="dropdown-divider"></div>
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="dropdown-item">Déconnexion</button>
+                            </form>
+                        </div>
+                    {% else %}
+                        <a class="nav-link" href="{% url 'login' %}">
+                            Connexion
+                        </a>
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
