@@ -11,3 +11,5 @@ webapp/__pycache__
 migrations/__pycache__
 
 rome/db.sqlite3
+
+rome/rome/secret.py

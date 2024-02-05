@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+#PILLOW / img
 
 class CarouselImage(models.Model):
     image = models.ImageField(upload_to='carousel_images/')
