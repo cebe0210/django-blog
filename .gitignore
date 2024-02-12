@@ -13,3 +13,5 @@ migrations/__pycache__
 rome/db.sqlite3
 
 rome/rome/secret.py
+
+rome/webapp/static/weather-icons/
