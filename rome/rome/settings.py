@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+from .secret import OPENWEATHERMAP_API_KEY
+
 # from decouple import config
 
 
@@ -136,4 +138,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'home'
 
-from secret import OPENWEATHERMAP_API_KEY

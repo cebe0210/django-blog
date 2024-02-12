@@ -1,49 +1,115 @@
-/* charte couleurs :
+/* Charte couleurs révisée:
     Blanc (#FFFFFF)
-    Vert du drapeau italien (#009246)
+    Gris clair (#F0F0F0)
+    Gris moyen (#CCCCCC)
     Gris foncé (#333333)
-    Gris clair (#CCCCCC)
-    Rouge du drapeau italien (#CE2B37) */
+    Rouge du drapeau italien (#CE2B37)
+*/
 
+body, .footer {
+    background-color: #F0F0F0;
+    color: #333333;
+    font-family: 'Open Sans', sans-serif;
+}
 
+h1, h2, h3, h4, h5, h6 {
+    color: #333333;
+    font-family: 'Lora', serif;
+}
 
-.card-img-caption {
-    background: rgba(0, 0, 0, 0.7); /* Arrière-plan avec transparence */
-    color: white; /* Couleur du texte */
-    width: 100%; /* Prend toute la largeur de l'image */
-    padding: 10px; /* Espacement interne */
-    box-sizing: border-box; /* Inclure le padding dans la largeur totale */
+.navbar, .footer {
+    background-color: #333333;
+}
+
+.nav-link, .navbar-brand, .footer a {
+    color: #FFFFFF;
+}
+
+.nav-link:hover, .navbar-brand:hover, .footer a:hover {
+    color: #CE2B37;
 }
 
 .custom-jumbotron {
-    background-image: url('../../media/img/design/saintAnge.png');
-    background-size: cover;
-    background-position: center;
-    color: rgb(255, 255, 255); /* Couleur du texte */
-    padding: 100px 0; /* Ajustez la marge intérieure en fonction de vos besoins */
-}
-.badge-custom {
-    background-color: #CE2B37 !important;
-}
-.custom-jumbotron::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.5); /* Opacité réglée ici */
+    background-image: url('../media/img/design/saintAnge.png');
+    color: #FFFFFF;
+    padding: 100px 0;
 }
 
-.custom-btn {
-    background-color: #009246;
-    border-color: #009246;
+.custom-jumbotron::before {
+    background-color: rgba(255, 255, 255, 0.5);
 }
-.custom-btn:hover {
-    background-color: #CE2B37 !important;
-    border-color: #CE2B37 !important;
+
+.card-img-caption {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+.custom-btn, .btn-outline-light {
+    background-color: #CCCCCC;
+    border-color: #CCCCCC;
+    color: #333333;
+}
+
+.custom-btn:hover, .btn-outline-light:hover {
+    background-color: #CE2B37;
+    border-color: #CE2B37;
+    color: #FFFFFF;
 }
 
 .custom-author {
     color: #CE2B37;
+}
+
+.custom-card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.2s ease-in-out;
+}
+
+.custom-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+}
+
+.card-img-top {
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover; 
+}
+
+.card-body {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+}
+
+.card-text {
+    flex-grow: 1;
+}
+
+.btn.custom-btn {
+    margin-top: auto; 
+    background-color: #009246; 
+    color: #ffffff;
+    border: none;
+}
+.btn.custom-btn:hover {
+    background-color: #007234;
+}
+.img_weather {
+    width: 75%;
+    height: auto;
+}
+
+.meta a {
+    color: #CE2B37; 
+}
+
+.meta {
+    font-style: italic; 
 }

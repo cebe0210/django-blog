@@ -1,0 +1,21 @@
+{% extends 'rome/base.html' %}
+{% load markdown_filters %}
+<div class="container">
+    <h1 class="mt-5 mb-4">Liste des itinéraires</h1>
+
+    <div class="row">
+        {% for itineraire in itineraires %}
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ itineraire.title }}</h5>
+                        <p class="card-text">{{ itineraire.content }}</p>
+                        <a href="{% url 'itineraire_detail' pk=itineraire.pk %}" class="btn btn-primary">Voir les détails</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>Aucun itinéraire trouvé.</p>
+        {% endfor %}
+    </div>
+</div>

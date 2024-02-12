@@ -1,0 +1,31 @@
+{% extends 'rome/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Modifier le Profil</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="first_name" class="form-label">Prénom</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" value="{{ userprofile.first_name }}">
+        </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Nom</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" value="{{ userprofile.last_name }}">
+        </div>
+        <div class="mb-3">
+            <label for="address" class="form-label">Adresse</label>
+            <textarea class="form-control" id="address" name="address" rows="3">{{ userprofile.address }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="phone_number" class="form-label">Numéro de Téléphone</label>
+            <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ userprofile.phone_number }}">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="{{ userprofile.email }}">
+        </div>
+        <button type="submit" class="btn custom-btn">Enregistrer les modifications</button>
+    </form>
+</div>
+{% endblock %}

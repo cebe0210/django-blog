@@ -1,61 +1,39 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="{% url 'home' %}">
-        Accueil
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse ml-auto" id="navbarNav">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Architecture</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Histoire</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Art</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Culinaire</a>
-            </li>
-            <!-- Ajoutez la section Eshop -->
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'product_list' %}">Eshop</a>
-            </li>
-        </ul>
-        
-            <!-- Barre de recherche -->
-            <form class="form-inline my-2 my-lg-0 ml-auto" action="{% url 'search_results' %}" method="get">
-                <div class="input-group">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Recherche" aria-label="Search" name="q" value="{{ request.GET.q }}">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
-                    </div>
-                </div>
-            </form>
-        
-            <!-- Bouton login -->
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    {% if user.is_authenticated %}
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ user.username }}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{% url 'home' %}">Profil</a>
-                            <a class="dropdown-item" href="{% url 'home' %}">Panier</a>
-                            <div class="dropdown-divider"></div>
-                            <form method="post" action="{% url 'logout' %}">
-                                {% csrf_token %}
-                                <button type="submit" class="dropdown-item">Déconnexion</button>
-                            </form>
-                        </div>
-                    {% else %}
-                        <a class="nav-link" href="{% url 'login' %}">
-                            Connexion
-                        </a>
-                    {% endif %}
+<nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #333333;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}" style="color: #FFFFFF;">Accueil</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'itineraire_list' %}" style="color: #FFFFFF;">Itinéraire</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'product_list' %}" style="color: #FFFFFF;">Eshop</a>
                 </li>
             </ul>
-        </nav>
+            <form class="d-flex" action="{% url 'search_results' %}" method="get">
+                <input class="form-control me-2" type="search" placeholder="Recherche" aria-label="Search" name="q" value="{{ request.GET.q }}">
+                <button class="btn btn-outline-light" type="submit">Rechercher</button>
+            </form>
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #FFFFFF;">
+                        {{ user.username }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'profile' %}">Profil</a></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Déconnexion</a></li>
+                    </ul>
+                </li>
+            </ul>
+            {% else %}
+            <div class="ms-auto">
+                <a href="{% url 'login' %}" class="btn btn-outline-light">Connexion</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</nav>

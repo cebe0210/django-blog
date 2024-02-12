@@ -1,11 +1,9 @@
-<!-- Carte de sponsor -->
-<a href="{{ sponsor.page }}" target="_blank">
-    <div class="card mb-4" style="width: 18rem;">
-        <img src="{{ sponsor.image.url }}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">{{ sponsor.name }}</h5>
-            <p class="card-text">{{ sponsor.description }}</p>
-            
-        </div>
+<div class="card custom-card mb-4" style="width: 18rem;">
+    <a href="{{ sponsor.page }}" target="_blank">
+        <img src="{{ sponsor.image.url }}" class="card-img-top" alt="{{ sponsor.name }}">
+    </a>
+    <div class="card-body">
+        <h5 class="card-title">{{ sponsor.name }}</h5>
+        <p class="card-text">{{ sponsor.description }}</p> 
     </div>
-</a>
+</div>

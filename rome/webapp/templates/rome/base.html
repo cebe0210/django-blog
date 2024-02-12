@@ -1,41 +1,34 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/javascript" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
-    <link rel="icon" type="image/png" href="{% get_media_prefix %}img/design/logo-test.png">
+    <link rel="icon" type="image/webp" href="{% get_media_prefix %}img/design/logo.webp">
     <title>{% block title %}Blog sur Rome{% endblock %}</title>
 </head>
 <body>
 
-<!-- Bannière supérieure -->
 <div class="jumbotron text-center custom-jumbotron">
-    <h1 class="display-4">Blog sur Rome</h1>
+    <h1>Blog sur Rome</h1>
     <p class="lead">Découvrez l'histoire, l'art, la cuisine et bien plus encore.</p>
 </div>
 
-<!-- Navbar horizontale -->
 {% include 'rome/navbar.html' %}
 
-<!-- Conteneur principal -->
-<div class="container mt-4">
+<div class="container">
     {% block content %}{% endblock %}
 </div>
 
-<!--Footer-->
 <footer class="footer mt-5">
 {% include 'rome/footer.html' %}
 </footer>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

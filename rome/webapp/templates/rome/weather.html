@@ -1,0 +1,9 @@
+{% load static %}
+<div class="card custom-card" style="width: 18rem;">
+    <img src="{% static weather_icon %}" alt="Weather icon" class="card-img-top img_weather">
+    <div class="card-body">
+        <h5 class="card-title">Météo actuelle à Rome</h5>
+        <p class="card-text">Température: {{ temperature }}°C</p>
+        <p class="card-text">Condition: {{ weather_description }}</p>
+    </div>
+</div>
