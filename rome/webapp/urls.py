@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import HomeView, ArticleDetailView, AuthorDetailView, like_article, CommentView, ItineraireDetailView, HistoireDetailView, ProductListView, ProductDetailView, login_View, search_view, ItineraireListView, editProfileView
+from .views import HomeView, ArticleDetailView, AuthorDetailView, like_article, CommentView, ItineraireDetailView, HistoireDetailView, ProductListView, ProductDetailView, login_View, search_view, ItineraireListView, editProfileView, TipsView
 from . import views
 from django.contrib.auth.views import LogoutView
 
@@ -23,6 +23,8 @@ urlpatterns = [
     path('search/', search_view, name='search_results'),
     path('itineraires/', ItineraireListView.as_view(), name='itineraire_list'),
     path('profile/', editProfileView.as_view(), name='profile'),
+    path('tips/', TipsView.as_view(), name='tips'),
+    path('about/', views.about, name='about')
     
 
 ]

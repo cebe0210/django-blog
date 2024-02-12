@@ -1,115 +1,98 @@
-/* Charte couleurs révisée:
-    Blanc (#FFFFFF)
-    Gris clair (#F0F0F0)
-    Gris moyen (#CCCCCC)
-    Gris foncé (#333333)
-    Rouge du drapeau italien (#CE2B37)
-*/
-
-body, .footer {
-    background-color: #F0F0F0;
-    color: #333333;
-    font-family: 'Open Sans', sans-serif;
+:root {
+    --beige: #F4F1DE;
+    --terracotta: #E07A5F;
+    --bleu-profond: #3D405B;
+    --vert-sauge: #81B29A;
+    --jaune-doré: #F2CC8F;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    color: #333333;
-    font-family: 'Lora', serif;
+.jumbotron {
+    background-image: url('../../media/img/design/saintAnge.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    position: relative;
 }
 
-.navbar, .footer {
-    background-color: #333333;
+.jumbotron::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: rgba(0, 0, 0, 0.5); /* Ajoutez votre opacité désirée ici */
+    z-index: 0;
 }
 
-.nav-link, .navbar-brand, .footer a {
-    color: #FFFFFF;
+.jumbotron > * {
+    position: relative;
+    z-index: 1;
 }
 
-.nav-link:hover, .navbar-brand:hover, .footer a:hover {
-    color: #CE2B37;
+/* Personnalisation de la barre de navigation */
+.navbar {
+    background-color: var(--bleu-profond);
 }
 
-.custom-jumbotron {
-    background-image: url('../media/img/design/saintAnge.png');
-    color: #FFFFFF;
-    padding: 100px 0;
+.nav-link, .navbar-brand {
+    color: var(--beige);
 }
 
-.custom-jumbotron::before {
-    background-color: rgba(255, 255, 255, 0.5);
+.nav-link:hover, .navbar-brand:hover {
+    color: var(--jaune-doré);
 }
 
-.card-img-caption {
-    background: rgba(0, 0, 0, 0.7);
+/* Personnalisation des boutons */
+.btn-primary {
+    background-color: var(--terracotta);
+    border-color: var(--terracotta);
     color: white;
 }
 
-.custom-btn, .btn-outline-light {
-    background-color: #CCCCCC;
-    border-color: #CCCCCC;
-    color: #333333;
+.btn-primary:hover {
+    background-color: darken(var(--terracotta), 10%);
+    border-color: darken(var(--terracotta), 10%);
 }
 
-.custom-btn:hover, .btn-outline-light:hover {
-    background-color: #CE2B37;
-    border-color: #CE2B37;
-    color: #FFFFFF;
+/* Style des boutons pour les actions secondaires */
+.btn-secondary {
+    background-color: var(--vert-sauge);
+    border-color: var(--vert-sauge);
+    color: white;
 }
 
-.custom-author {
-    color: #CE2B37;
+.btn-secondary:hover {
+    background-color: darken(var(--vert-sauge), 10%);
+    border-color: darken(var(--vert-sauge), 10%);
 }
 
-.custom-card {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: all 0.2s ease-in-out;
+/* Styles supplémentaires pour améliorer le visuel du site */
+body, h1, h2, h3, p {
+    font-family: 'Open Sans', sans-serif;
 }
 
-.custom-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+h1, h2, h3 {
+    color: var(--bleu-profond);
 }
 
+p {
+    color: var(--gris);
+}
+
+/* Personnalisation des cartes */
 .card {
-    display: flex;
-    flex-direction: column;
-    height: 100%; 
+    background-color: var(--beige);
+    border: 1px solid var(--jaune-doré);
 }
 
-.card-img-top {
-    width: 100%; 
-    height: 200px; 
-    object-fit: cover; 
+.card-header {
+    background-color: var(--vert-sauge);
+    color: white;
 }
 
 .card-body {
-    flex-grow: 1; 
-    display: flex;
-    flex-direction: column;
+    color: var(--gris-foncé);
 }
 
-.card-text {
-    flex-grow: 1;
-}
-
-.btn.custom-btn {
-    margin-top: auto; 
-    background-color: #009246; 
-    color: #ffffff;
-    border: none;
-}
-.btn.custom-btn:hover {
-    background-color: #007234;
-}
-.img_weather {
-    width: 75%;
-    height: auto;
-}
-
-.meta a {
-    color: #CE2B37; 
-}
-
-.meta {
-    font-style: italic; 
+/* Ajout de légères ombres pour un effet de profondeur */
+.shadow {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
 }

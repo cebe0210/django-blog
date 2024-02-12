@@ -1,9 +1,8 @@
 {% load static %}
-<div class="card custom-card" style="width: 18rem;">
-    <img src="{% static weather_icon %}" alt="Weather icon" class="card-img-top img_weather">
-    <div class="card-body">
-        <h5 class="card-title">Météo actuelle à Rome</h5>
-        <p class="card-text">Température: {{ temperature }}°C</p>
-        <p class="card-text">Condition: {{ weather_description }}</p>
-    </div>
+
+<div class="bg-blue-100 rounded-lg shadow p-4">
+    <img src="{% static weather_icon %}" alt="Weather icon" class="w-16 h-16 mx-auto">
+    <h3 class="text-center text-lg">Météo actuelle à Rome</h3>
+    <p class="text-center">Température: {{ temperature }}°C</p>
+    <p class="text-center">Condition: {{ weather_description }}</p>
 </div>

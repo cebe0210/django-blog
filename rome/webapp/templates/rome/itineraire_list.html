@@ -1,21 +1,24 @@
 {% extends 'rome/base.html' %}
+{% load static %}
 {% load markdown_filters %}
-<div class="container">
-    <h1 class="mt-5 mb-4">Liste des itinéraires</h1>
 
-    <div class="row">
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+    <h1 class="text-3xl font-bold text-center mb-12">Liste des itinéraires</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {% for itineraire in itineraires %}
-            <div class="col-md-6 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ itineraire.title }}</h5>
-                        <p class="card-text">{{ itineraire.content }}</p>
-                        <a href="{% url 'itineraire_detail' pk=itineraire.pk %}" class="btn btn-primary">Voir les détails</a>
-                    </div>
+            <div class="bg-white overflow-hidden shadow-md rounded-lg">
+                <!-- Supposons que image_url est le chemin de l'image -->
+                <img src="{{ itineraire.image.url }}" alt="{{ itineraire.title }}" class="w-full h-48 object-cover">
+                <div class="p-6 flex flex-col justify-between">
+                    <h5 class="font-semibold text-lg mb-2">{{ itineraire.title }}</h5>
+                    <p class="text-gray-700 flex-grow">{{ itineraire.summary|markdown }}</p>
+                    <a href="{% url 'itineraire_detail' pk=itineraire.pk %}" class="mt-4 inline-block bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 btn-secondary">Voir les détails</a>
                 </div>
             </div>
         {% empty %}
-            <p>Aucun itinéraire trouvé.</p>
+            <p class="text-center text-gray-600">Aucun itinéraire trouvé.</p>
         {% endfor %}
     </div>
 </div>
+{% endblock %}

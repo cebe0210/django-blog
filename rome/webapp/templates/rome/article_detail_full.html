@@ -2,18 +2,13 @@
 {% load static %}
 {% load markdown_filters %}
 {% block content %}
-<div class="container mt-4">
-    <div class="card mb-4">
-        <!-- Assurer que l'image est responsive et bien alignée -->
-        <img src="{{ article.image.url }}" class="card-img-top" alt="{{ article.title }}" style="object-fit: cover; width: 100%; max-height: 400px;">
-        <div class="card-body">
-            <h2 class="card-title">{{ article.title }}</h2>
-            <p class="card-text meta">Publié le {{ article.date|date:"j F Y" }} par <a href="{% url 'author_detail' pk=article.author.id %}">{{ article.author.name }}</a></p>
-            <!-- Convertir le contenu Markdown en HTML -->
-            <p class="card-text">{{ article.content|markdown|safe }}</p>
-        </div>
+<div class="max-w-4xl mx-auto mt-4">
+    <img src="{{ article.image.url }}" alt="{{ article.title }}" class="w-full h-auto object-cover rounded-lg shadow-lg">
+    <div class="mt-4">
+        <h2 class="text-3xl font-bold">{{ article.title }}</h2>
+        <p class="text-gray-600">Publié le {{ article.date|date:"j F Y" }} par <a href="{% url 'author_detail' pk=article.author.pk %}" class="text-blue-500">{{ article.author.name }}</a></p>
+        <div class="mt-4 text-gray-800">{{ article.content|markdown|safe }}</div>
     </div>
-
     <!-- Inclusion d'une section pour les commentaires, ajustez selon votre implémentation -->
     {% include 'rome/comment.html' %}
 </div>

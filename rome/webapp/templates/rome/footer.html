@@ -1,8 +1,28 @@
-<div class="container-fluid mt-5" style="background-color: #333333; color: #FFFFFF; padding: 20px 0;">
-    <div class="container text-center">
-        <p>&copy; 2024 Votre Nom. Tous droits réservés.</p>
-        <a href="#" class="text-decoration-none" style="color: #CE2B37;">Politique de confidentialité</a>
-        <span class="mx-2">|</span>
-        <a href="#" class="text-decoration-none" style="color: #CE2B37;">Conditions d'utilisation</a>
+{% load static %}
+
+<footer class="bg-bleu-profond text-gray-200">
+    <div class="container mx-auto px-6 py-8">
+        <div class="flex justify-between">
+            <div class="flex flex-col">
+                <span>&copy; 2024 Votre Nom. Tous droits réservés.</span>
+                <a href="#" class="text-jaune-doré hover:text-jaune-doré-light mt-2">Politique de confidentialité</a>
+                <a href="#" class="text-jaune-doré hover:text-jaune-doré-light mt-2">Conditions d'utilisation</a>
+            </div>
+            <div class="flex flex-col">
+                <span>Suivez-nous sur les réseaux sociaux :</span>
+                <div class="flex mt-2">
+                    <a href="https://facebook.com" target="_blank" class="mr-4">
+                        <img src="{% static 'icons/facebook.svg' %}" alt="Facebook" class="w-6 h-6 fill-current text-jaune-doré">
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="mr-4">
+                        <img src="{% static 'icons/twitter.svg' %}" alt="Twitter" class="w-6 h-6 fill-current text-jaune-doré">
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="mr-4">
+                        <img src="{% static 'icons/instagram.svg' %}" alt="Instagram" class="w-6 h-6 fill-current text-jaune-doré">
+                    </a>
+                    <!-- Autres icônes de réseaux sociaux -->
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</footer>

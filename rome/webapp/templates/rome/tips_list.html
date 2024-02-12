@@ -1,0 +1,15 @@
+{% extends 'rome/base.html' %}
+{% load markdown_filters %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Conseils pour préparer votre voyage</h1>
+    {% for tip in tips_list %}
+        <div class="tip my-3 p-3 bg-light rounded">
+            <h2>{{ tip.title }}</h2>
+            <!-- Utilisation du filtre markdown pour convertir le contenu -->
+            <div class="content">{{ tip.content|markdown }}</div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

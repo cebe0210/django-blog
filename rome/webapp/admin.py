@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Author, Article, Sponsor, Comment, Product, UserProfile
+from .models import Author, Article, Sponsor, Comment, Product, UserProfile, Tips
 
 @admin.register(Author)
 class AutorAdmin(admin.ModelAdmin):
@@ -27,3 +27,7 @@ class ProductAdmin(admin.ModelAdmin):
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'email', 'active')
+    
+@admin.register(Tips)
+class TipsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'content')

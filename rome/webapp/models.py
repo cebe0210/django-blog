@@ -62,7 +62,10 @@ class Article(models.Model):
     
     # def is_itineraire(self):
     #     return self.itineraire
-
+class Tips(models.Model):
+    title = models.CharField(max_length=128)
+    content = models.TextField()
+        
 class Comment(models.Model):
     author = models.CharField(max_length=128)
     title = models.CharField(max_length=128)

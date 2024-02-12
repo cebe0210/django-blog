@@ -2,7 +2,7 @@ from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
-from .models import Article, Author, Sponsor, Comment, Product, UserProfile
+from .models import Article, Author, Sponsor, Comment, Product, UserProfile, Tips
 from .forms import CommentForm, CustomLoginForm, UserProfileForm
 from django.http import JsonResponse
 from django.contrib.auth import login
@@ -14,6 +14,7 @@ import requests
 from rome.secret import OPENWEATHERMAP_API_KEY
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.views.generic.list import ListView
 import datetime
 
 class HomeView(ListView):
@@ -156,7 +157,7 @@ class ArticleDetailView(DetailView):
         category_templates = {
             Article.Category.Itineraire: 'rome/itineraire_detail_full.html',
             Article.Category.Histoire: 'rome/histoire_detail_full.html',
-            Article.Category.Art: 'rome/art_detail_full.html',
+            Article.Category.Art: 'rome/article_detail_full.html',
             Article.Category.Cuisine: 'rome/cuisine_detail_full.html',
             Article.Category.Article: 'rome/article_detail_full.html',
         }
@@ -185,9 +186,11 @@ class ItineraireDetailView(DetailView):
         context['comments'] = Comment.objects.filter(article=itineraire)
         context['comment_form'] = CommentForm()
         return context
+    
 class ItineraireListView(ListView):
+    model = Article
     template_name = 'rome/itineraire_list.html'
-    context_object_name = 'itineraire'
+    context_object_name = 'itineraires'
     
     def get_queryset(self):
         return Article.objects.filter(category=Article.Category.Itineraire)
@@ -298,3 +301,11 @@ class editProfileView(View):
             form.save()
             return redirect('home')
         return render(request, self.template_name, {'form': form, 'userprofile': profile})
+    
+class TipsView(ListView):
+    model = Tips
+    template_name = 'rome/tips_list.html'
+    context_object_name = 'tips_list'
+
+def about(request):
+    return render(request, 'rome/about.html')
