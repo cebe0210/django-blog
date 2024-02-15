@@ -4,6 +4,7 @@
     --bleu-profond: #3D405B;
     --vert-sauge: #81B29A;
     --jaune-doré: #F2CC8F;
+    --gris: #dddddd;
 }
 
 .jumbotron {
@@ -68,8 +69,11 @@
 body, h1, h2, h3, p {
     font-family: 'Open Sans', sans-serif;
 }
+h1 {
+    color: var(--gris);
+}
 
-h1, h2, h3 {
+h2, h3 {
     color: var(--bleu-profond);
 }
 
@@ -95,4 +99,9 @@ p {
 /* Ajout de légères ombres pour un effet de profondeur */
 .shadow {
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+}
+.drop-custom {
+    background-color: var(--bleu-profond);
+    opacity: 0.80; 
+    backdrop-filter: blur(5px);
 }

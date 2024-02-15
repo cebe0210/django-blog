@@ -1,11 +1,11 @@
-<nav class="bg-bleu-profond shadow py-4 navbar">
+<nav class="shadow py-4 navbar">
     <div class="container mx-auto px-4 flex justify-between items-center">
-        <a class="text-xl font-semibold text-jaune-doré hover:text-jaune-doré-light" href="{% url 'home' %}">Accueil</a>
+        <a class="text-xl font-semibold nav-link hover:text-jaune-doré-light" href="{% url 'home' %}">Accueil</a>
         <div class="hidden md:flex">
-            <a class="text-base text-beige hover:text-jaune-doré px-3 py-2 rounded" href="{% url 'itineraire_list' %}">Itinéraire</a>
-            <a class="text-base text-beige hover:text-jaune-doré px-3 py-2 rounded" href="{% url 'tips' %}">Préparer son voyage</a>
-            <a class="text-base text-beige hover:text-jaune-doré px-3 py-2 rounded" href="{% url 'about' %}">À propos</a>
-            <a class="text-base text-beige hover:text-jaune-doré px-3 py-2 rounded" href="{% url 'product_list' %}">Eshop</a>
+            <a class="text-base text-beige nav-link hover:text-jaune-doré px-3 py-2 rounded" href="{% url 'itineraire_list' %}">Itinéraire</a>
+            <a class="text-base text-beige nav-link hover:text-jaune-doré px-3 py-2 rounded" href="{% url 'tips' %}">Préparer son voyage</a>
+            <a class="text-base text-beige nav-link hover:text-jaune-doré px-3 py-2 rounded" href="{% url 'about' %}">À propos</a>
+            <a class="text-base text-beige nav-link hover:text-jaune-doré px-3 py-2 rounded" href="{% url 'product_list' %}">Eshop</a>
         </div>
         <div class="md:hidden">
             <button class="navbar-toggler text-beige" type="button">
@@ -14,36 +14,46 @@
         </div>
         <form action="{% url 'search_results' %}" method="get" class="flex items-center">
             <input type="search" name="q" placeholder="Recherche..." class="rounded-l py-2 px-4" />
-            <button type="submit" class="bg-terracotta hover:bg-terracotta-dark text-white py-2 px-4 rounded-r">
+            <button type="submit" class="btn-primary  text-white py-2 px-4 rounded-r">
                 Rechercher
             </button>
         </form>
         {% if user.is_authenticated %}
-            <div class="relative">
-                <button class="dropdown-toggle text-beige">
-                    {{ user.username }}
-                </button>
-                <div class="dropdown-menu absolute hidden bg-bleu-profond text-white right-0 w-48 py-2 mt-2 shadow-lg">
-                    <a class="block px-4 py-2 text-sm hover:bg-terracotta" href="#">Panier</a>
-                    <a class="block px-4 py-2 text-sm hover:bg-terracotta" href="#">Articles enregistrés</a>
-                    <a class="block px-4 py-2 text-sm hover:bg-terracotta" href="{% url 'profile' %}">Profil</a>
-                    <a class="block px-4 py-2 text-sm hover:bg-terracotta" href="{% url 'logout' %}">Déconnexion</a>
-                </div>
+        <div class="relative">
+            <button class="dropdown-toggle text-beige focus:outline-none btn-primary text-white py-2 px-4 rounded" type="button">
+                {{ user.username }}
+                <svg class="w-4 h-4 ml-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </button>
+            <div class="dropdown-menu absolute hidden right-0 w-48 py-2 mt-2 bg-bleu-profond text-white shadow-lg z-50 drop-custom">
+                <a class="block px-4 py-2 text-sm nav-link " href="{% url 'profile' %}">Profil</a>
+                <a class="block px-4 py-2 text-sm nav-link" href="#">Panier</a>
+                <a class="block px-4 py-2 text-sm nav-link" href="#">Articles enregistrés</a>
+                <a class="block px-4 py-2 text-sm nav-link" href="{% url 'logout' %}">Déconnexion</a>
             </div>
-        {% else %}
-            <a href="{% url 'login' %}" class="text-base bg-vert-sauge hover:bg-vert-sauge-dark text-white py-2 px-4 rounded transition duration-300">Connexion</a>
-        {% endif %}
-    </div>
+        </div>
+    {% else %}
+        <a href="{% url 'login' %}" class="text-base bg-vert-sauge hover:bg-vert-sauge-dark text-white py-2 px-4 rounded transition duration-300 ">Connexion</a>
+    {% endif %}
+</div>
 </nav>
 
-<!-- Script Tailwind pour le menu responsive -->
+<!-- Script pour le menu déroulant de l'utilisateur -->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const navbarToggler = document.querySelector('.navbar-toggler');
-        const navbarMenu = document.querySelector('.dropdown-menu');
+document.addEventListener('DOMContentLoaded', function () {
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
 
-        navbarToggler.addEventListener('click', function () {
-            navbarMenu.classList.toggle('hidden');
-        });
+    dropdownToggle.addEventListener('click', function () {
+        dropdownMenu.classList.toggle('hidden');
     });
+
+    // Fermer le dropdown en cliquant en dehors
+    window.addEventListener('click', function (e) {
+        if (!dropdownToggle.contains(e.target)) {
+            dropdownMenu.classList.add('hidden');
+        }
+    });
+});
 </script>
